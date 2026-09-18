@@ -63,8 +63,9 @@ with right:
 def show(frame: pd.DataFrame):
     for _, r in frame.sort_values(["score", "date"], ascending=False).iterrows():
         st.markdown(f"**{r['summary']}**  \n"
-                    f"r/{r['subreddit']} · {r['score']} pts · {r['date']:%b %d} · "
-                    f"{', '.join(r['topics'])} · [thread]({r['url']})")
+                    f"r/{r['subreddit']} · {r['kind']} · {r['date']:%b %d} · "
+                    f"{', '.join(r['topics'])} · [link]({r['url']})"
+                    + (f"  \nin thread: _{r['title']}_" if r["kind"] == "comment" else ""))
 
 
 tab_fix, tab_love, tab_all = st.tabs(["What to improve", "What people like", "All mentions"])

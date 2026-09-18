@@ -24,3 +24,8 @@ No keys yet? `.venv/bin/python seed_sample.py` loads fake data so the dashboard 
 - **Use of data.** Text is sent to an LLM only to classify sentiment and topics. It is not used
   to train models, resold, or shared, and nothing is inferred about individual users.
 - **Credentials.** A Reddit "script" app on the developer's own account, read via environment variables.
+
+## Keyless comment polling
+`collect_comments.py` polls each subreddit's newest-comments RSS feed and keeps comments that
+mention the brand, even when the thread title doesn't. Reddit serves only ~25 recent comments
+per feed, so run it frequently: `python collect_comments.py --every 600`.
